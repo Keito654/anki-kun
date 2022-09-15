@@ -1,0 +1,10 @@
+@startuml ユースケース図
+left to right direction
+:ユーザー: as user
+rectangle "anki-kun" {
+  usecase "英単語を見る" as R1
+  usecase "英単語を登録・更新・削除する" as R2
+}
+user --> R1
+user --> R2
+@enduml
