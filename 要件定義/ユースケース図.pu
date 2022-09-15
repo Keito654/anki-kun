@@ -2,9 +2,15 @@
 left to right direction
 :ユーザー: as user
 rectangle "anki-kun" {
-  usecase "英単語を見る" as R1
+  usecase "英単語一覧を見る" as R1
+  usecase "英単語詳細を見る" as detail
   usecase "英単語を登録・更新・削除する" as R2
+  usecase "新規会員登録" as R3
+  usecase "ログイン" as R4
 }
 user --> R1
 user --> R2
+user --> R3
+user --> R4
+user --> detail
 @enduml
