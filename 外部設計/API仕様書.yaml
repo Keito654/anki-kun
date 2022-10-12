@@ -1,0 +1,93 @@
+openapi: 3.0.0
+info:
+  title: anki-kun API
+  version: "1.0"
+paths:
+  /login:
+    post:
+      summary: ログイン処理
+      description: IDとパスワードをサーバーに渡し、ログインの可否を問う
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':    # status code
+          description: ログイン成功
+          content:
+            application/json:
+              schema:
+                type: string
+        '401':
+          description: ログイン失敗
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: サーバー処理失敗
+          content:
+            application/json:
+              schema:
+                type: string
+  /signin:
+    post:
+      summary: 新規会員登録
+      description: IDとパスワードを渡し、新規会員登録の結果を問う。
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                password:
+                  type: string
+      responses:
+        '200':    # status code
+          description: 新規会員登録成功
+          content:
+            application/json:
+              schema:
+                type: string
+        '400':
+          description: 新規会員登録失敗
+          content:
+            application/json:
+              schema:
+                type: string
+        '500':
+          description: サーバー処理失敗
+          content:
+            application/json:
+              schema:
+                type: string
+  /list/{userid}:
+    get:
+      summary: 単語リスト一覧を取得
+      description: ホームページアクセス時、単語リストを表示
+      parameters:
+        - in: path
+          name: userid
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  listId:
+                    type: array
