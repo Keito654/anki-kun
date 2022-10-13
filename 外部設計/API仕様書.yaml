@@ -71,13 +71,13 @@ paths:
             application/json:
               schema:
                 type: string
-  /list/{userid}:
+  /list/{listId}:
     get:
       summary: 単語リスト一覧を取得
       description: ホームページアクセス時、単語リストを表示
       parameters:
         - in: path
-          name: userid
+          name: listId
           schema:
             type: string
           required: true
@@ -89,5 +89,41 @@ paths:
               schema:
                 type: object
                 properties:
-                  listId:
-                    type: array
+                  listArray:
+                    items:
+                      type: object
+                    example:
+                      - { wordId, wordTitle }
+                      - { wordId, wordTitle }
+                      - { wordId, wordTitle }
+  /list/{listId}/word/{wordId}:
+    get:
+      summary: 単語詳細取得
+      description: 単語の詳細情報をlistIdとwordIdから取得
+      parameters:
+        - in: path
+          name: listId
+          schema:
+            type: string
+          required: true
+        - in: path
+          name: wordId
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: 成功
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  wordId:
+                    type: integer
+                  englishWord:
+                    type: string
+                  japaneseWord:
+                    type: string
+                  audioKey:
+                    type: string
